@@ -1,0 +1,17 @@
+/second-blog/node_modules
+/second-blog/dist
+
+/random-quote-figma-plugin/node_modules
+/random-quote-figma-plugin/dist
+
+/my-first-plugin/*.log
+/my-first-plugin/*.log.*
+/my-first-plugin/node_modules
+
+/my-first-plugin/out/
+/my-first-plugin/dist/
+/my-first-plugin/code.js
+
+
+/first-react-project/node_modules
+/first-react-project/dist

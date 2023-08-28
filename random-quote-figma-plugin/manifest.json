@@ -1,0 +1,10 @@
+{
+  "name": "RandomQuotes and TeamLibrary plugin",
+  "id": "00000002",
+  "api": "1.0.0",
+  "main": "dist/plugin.js",
+  "editorType": ["figma", "figjam"],
+  "ui": "dist/ui.html",
+  "permissions": ["teamlibrary"],
+  "enableProposedApi": true
+}
