@@ -3,11 +3,12 @@ export type Quote = {
     text: string;
 };
 
-export type PluginAction = "generateRandomQuote" | "fetchFromTeamLibrary";
+export type PluginAction = "generateRandomQuote" | "importAndCreateComponentInstance";
 
 export type PluginMessagePayload = {
     type: PluginAction;
-    randomQuote: Quote;
+    randomQuote?: Quote;
+    componentKey?: string;
 };
 
 export type PluginCallbackFunction<T = void> = (

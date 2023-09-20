@@ -33,24 +33,13 @@ function generateRandomQuote({ randomQuote }: PluginMessagePayload) {
     }
 }
 
-async function fetchFromTeamLibrary() {
-    console.log("in fetchfromteamlibrary");
-    try {
-        const libraryCollections = await figma.teamLibrary.getAvailableLibraryVariableCollectionsAsync();
-        console.log(figma.teamLibrary);
-        console.log("library colleciton is ", libraryCollections);
-        const allVariables = [];
-        for (const collection of libraryCollections) {
-            console.log("In for loop");
-            const variables = await figma.teamLibrary.getVariablesInLibraryCollectionAsync(collection.key);
-            allVariables.push({
-                collectionName: collection.name,
-                variables
-            });
-        }
-        figma.ui.postMessage({ type: 'collections-list', data: allVariables });
-    } catch (error) {
-        console.error("Error fetching library collections:", error);
+async function importAndCreateComponentInstance(payload: PluginMessagePayload) {
+    if (payload.componentKey) { 
+        const component = await figma.importComponentByKeyAsync(payload.componentKey);
+        const instance = component.createInstance();
+        figma.currentPage.appendChild(instance);
+        instance.x = figma.viewport.center.x;
+        instance.y = figma.viewport.center.y;
     }
 }
 
@@ -58,7 +47,7 @@ loadFonts().then(() => {
     figma.ui.onmessage = (payload: unknown) => {
         const callbackMap: Record<PluginAction, PluginCallbackFunction> = {
             generateRandomQuote,
-            fetchFromTeamLibrary
+            importAndCreateComponentInstance
         };
     
         if (isPayload(payload) && callbackMap[payload.type]) {

@@ -10,3 +10,10 @@ export function requestGenerateRandomQuoteToPlugin(randomQuote: Quote) {
         randomQuote,
     });
 }
+
+export function requestImportAndCreateComponentInstance(componentKey: string) {
+    requestToPlugin({
+        type: "importAndCreateComponentInstance",
+        componentKey
+    });
+}

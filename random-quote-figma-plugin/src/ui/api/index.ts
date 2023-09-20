@@ -8,3 +8,22 @@ export async function requestQuotes() {
   const data = await response.json();
   return data as Quote[];
 }
+
+
+const FIGMA_API_ENDPOINT = "https://api.figma.com/v1/";
+
+export async function getTeamComponents(teamKey: string, accessToken: string) {
+    const response = await fetch(`${FIGMA_API_ENDPOINT}teams/${teamKey}/components`, {
+        method: "GET",
+        headers: {
+            'X-FIGMA-TOKEN': accessToken,
+            'Content-Type': 'application/json',
+        }
+    });
+    
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return await response.json();
+}
