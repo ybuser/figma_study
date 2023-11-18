@@ -24,5 +24,31 @@ figma.ui.onmessage = async (msg) => {
         figma.currentPage.appendChild(newComponent);
         figma.notify('Component modified');
     }
+
+    if (msg.type === 'modify-square') {
+        const selection = figma.currentPage.selection;
+
+        // Check if something is selected
+        if (selection.length === 0) {
+            figma.notify("No object selected");
+            return;
+        }
+
+        const selectedNode = selection[0];
+
+        // Check if the selected object is a rectangle (square)
+        if (selectedNode.type === 'RECTANGLE') {
+            // Change the position
+            selectedNode.x += 100; // Move 100 units to the right
+            selectedNode.y += 100; // Move 100 units down
+
+            // Change the color
+            selectedNode.fills = [{ type: 'SOLID', color: { r: 1, g: 0, b: 0 } }]; // Red color
+
+            figma.notify("Square modified");
+        } else {
+            figma.notify("Selected object is not a square");
+        }
+    }
 };
 
