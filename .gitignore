@@ -15,3 +15,5 @@
 
 /first-react-project/node_modules
 /first-react-project/dist
+
+/json2json/uijson_data/*
