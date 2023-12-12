@@ -1,34 +1,89 @@
-// This plugin will open a window to prompt the user to enter a number, and
-// it will then create that many rectangles on the screen.
+// Define interfaces for the JSON structure
+interface Color {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+}
 
-// This file holds the main code for plugins. Code in this file has access to
-// the *figma document* via the figma global object.
-// You can access browser APIs in the <script> tag inside "ui.html" which has a
-// full browser environment (See https://www.figma.com/plugin-docs/how-plugins-run).
+interface Fill {
+  type: string;
+  color: Color;
+}
 
-// This shows the HTML page in "ui.html".
-figma.showUI(__html__);
+interface AbsoluteBoundingBox {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
 
-// Calls to "parent.postMessage" from within the HTML page will trigger this
-// callback. The callback will be passed the "pluginMessage" property of the
-// posted message.
-figma.ui.onmessage = msg => {
-  // One way of distinguishing between different types of messages sent from
-  // your HTML page is to use an object with a "type" property like this.
-  if (msg.type === 'create-rectangles') {
-    const nodes: SceneNode[] = [];
-    for (let i = 0; i < msg.count; i++) {
-      const rect = figma.createEllipse();
-      rect.x = i * 150;
-      rect.fills = [{type: 'SOLID', color: {r: 0, g: 0, b: 0}}];
-      figma.currentPage.appendChild(rect);
-      nodes.push(rect);
+interface FigmaNode {
+  type: string;
+  name: string;
+  absoluteBoundingBox: AbsoluteBoundingBox;
+  fills: Fill[];
+}
+
+interface FigmaJSON {
+  document: {
+    children: FigmaNode[];
+  };
+}
+
+// This function transforms JSON fills to Figma Paints
+function transformFillsToFigmaPaints(fills: Fill[]): Paint[] {
+  return fills.map(fill => {
+    // Assuming all fills in the JSON are solid colors
+    const figmaFill: SolidPaint = {
+      type: 'SOLID',
+      color: fill.color,
+      opacity: fill.color.a // Using alpha channel as opacity
+    };
+    return figmaFill;
+  });
+}
+
+// This function creates Figma nodes from JSON data
+function createFigmaNodesFromJSON(json: FigmaJSON) {
+  const nodes: SceneNode[] = [];
+  json.document.children.forEach(item => {
+    let node: RectangleNode | TextNode | null = null;
+
+    if (item.type === 'RECTANGLE') {
+      node = figma.createRectangle();
+      node.x = item.absoluteBoundingBox.x;
+      node.y = item.absoluteBoundingBox.y;
+      node.resize(item.absoluteBoundingBox.width, item.absoluteBoundingBox.height);
+      node.fills = transformFillsToFigmaPaints(item.fills); // Transform fills
     }
+    // Handle other node types here...
+
+    if (node) {
+      figma.currentPage.appendChild(node);
+      nodes.push(node);
+    }
+  });
+  return nodes;
+}
+
+// Handle messages from the UI
+figma.ui.onmessage = async msg => {
+  if (msg.type === 'create-from-json') {
+    // Parse the JSON data
+    const jsonData: FigmaJSON = JSON.parse(msg.jsonData);
+
+    // Create Figma nodes from JSON data
+    const nodes = createFigmaNodesFromJSON(jsonData);
+
+    // Select and focus on the created nodes
     figma.currentPage.selection = nodes;
     figma.viewport.scrollAndZoomIntoView(nodes);
   }
 
-  // Make sure to close the plugin when you're done. Otherwise the plugin will
-  // keep running, which shows the cancel button at the bottom of the screen.
+  // Close the plugin
   figma.closePlugin();
 };
+
+// Show the UI
+figma.showUI(__html__, { width: 240, height: 180 });

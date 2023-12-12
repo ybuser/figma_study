@@ -1,12 +1,24 @@
-<h1>Petma plugin</h1>
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Petma plugin</h1>
+    <input type="file" id="jsonFileInput" accept=".json">
+    <button id="createButton">Create from JSON</button>
+    <script>
+      const jsonFileInput = document.getElementById('jsonFileInput');
+      const createButton = document.getElementById('createButton');
 
-<div>
-  <label for="username">Username</label>
-  <input type="text">
-
-  <label for="name">Name</label>
-  <input type="text">
-
-  <label for="description">Description</label>
-  <input type="textarea">
-</div>
+      createButton.onclick = () => {
+        const file = jsonFileInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const jsonData = JSON.parse(e.target.result);
+            parent.postMessage({ pluginMessage: { type: 'create-from-json', jsonData } }, '*');
+          };
+          reader.readAsText(file);
+        }
+      };
+    </script>
+  </body>
+</html>
