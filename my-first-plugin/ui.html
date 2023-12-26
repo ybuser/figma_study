@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <h1>Petma plugin</h1>
+    <h1>Petma Plugin</h1>
     <input type="file" id="jsonFileInput" accept=".json">
     <button id="createButton">Create from JSON</button>
     <script>
@@ -12,9 +12,16 @@
         const file = jsonFileInput.files[0];
         if (file) {
           const reader = new FileReader();
+          console.log("button clicked");
           reader.onload = (e) => {
-            const jsonData = JSON.parse(e.target.result);
-            parent.postMessage({ pluginMessage: { type: 'create-from-json', jsonData } }, '*');
+            try {
+              const jsonData = JSON.parse(e.target.result);
+              parent.postMessage({ pluginMessage: { type: 'create-from-json', jsonData } }, '*');
+              console.log("YES");
+              console.log("jsonData is ", jsonData);
+            } catch (error) {
+              console.error('Error parsing JSON:', error);
+            }
           };
           reader.readAsText(file);
         }

@@ -34,18 +34,28 @@ interface FigmaJSON {
 // This function transforms JSON fills to Figma Paints
 function transformFillsToFigmaPaints(fills: Fill[]): Paint[] {
   return fills.map(fill => {
-    // Assuming all fills in the JSON are solid colors
-    const figmaFill: SolidPaint = {
-      type: 'SOLID',
-      color: fill.color,
-      opacity: fill.color.a // Using alpha channel as opacity
-    };
-    return figmaFill;
+    if (fill.type === 'SOLID') {
+      const figmaFill: SolidPaint = {
+        type: 'SOLID',
+        color: {
+          r: fill.color.r,
+          g: fill.color.g,
+          b: fill.color.b
+        },
+        opacity: fill.color.a
+      };
+      return figmaFill;
+    } else {
+      // Handle other fill types if necessary
+      return { type: 'SOLID', color: { r: 0, g: 0, b: 0 } }; // Default fill
+    }
   });
 }
 
+
 // This function creates Figma nodes from JSON data
 function createFigmaNodesFromJSON(json: FigmaJSON) {
+  console.log("in createFigmaNodes");
   const nodes: SceneNode[] = [];
   json.document.children.forEach(item => {
     let node: RectangleNode | TextNode | null = null;
@@ -68,10 +78,14 @@ function createFigmaNodesFromJSON(json: FigmaJSON) {
 }
 
 // Handle messages from the UI
-figma.ui.onmessage = async msg => {
+figma.ui.onmessage = msg => {
+  console.log("Received message:", msg.type);
+
   if (msg.type === 'create-from-json') {
-    // Parse the JSON data
-    const jsonData: FigmaJSON = JSON.parse(msg.jsonData);
+    console.log("Creating from JSON");
+
+    // jsonData is already a JavaScript object, no need to parse
+    const jsonData: FigmaJSON = msg.jsonData;
 
     // Create Figma nodes from JSON data
     const nodes = createFigmaNodesFromJSON(jsonData);
