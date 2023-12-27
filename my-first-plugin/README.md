@@ -1,3 +1,12 @@
+RICO의 UI JSON으로 Figma 디자인 생성
+- yarn install, yarn build 실행
+- convert.py 이용해 UI JSON을 Figma에서 사용할 JSON으로 변환
+- Figma에서 Plugins -> Development -> Impor plugin from manifest... 으로 플러그인 가져오기
+- 플러그인 실행 후 2단계에서 변환한 Figma용 JSON 파일 선택
+
+
+***
+
 Below are the steps to get your plugin running. You can also find instructions at:
 
   https://www.figma.com/plugin-docs/plugin-quickstart-guide/
