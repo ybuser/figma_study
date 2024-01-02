@@ -1,0 +1,243 @@
+{
+    "document": {
+        "children": [
+            {
+                "type": "RECTANGLE",
+                "name": "Image",
+                "blendMode": "PASS_THROUGH",
+                "absoluteBoundingBox": {
+                    "x": 47,
+                    "y": 46,
+                    "width": 79,
+                    "height": 58
+                },
+                "fills": [
+                    {
+                        "type": "SOLID",
+                        "color": {
+                            "r": 0.9450980392156862,
+                            "g": 0.3843137254901961,
+                            "b": 0.5764705882352941,
+                            "a": 1
+                        }
+                    }
+                ],
+                "strokes": [],
+                "strokeWeight": 1,
+                "strokeAlign": "INSIDE",
+                "effects": []
+            },
+            {
+                "type": "RECTANGLE",
+                "name": "Image",
+                "blendMode": "PASS_THROUGH",
+                "absoluteBoundingBox": {
+                    "x": 33,
+                    "y": 23,
+                    "width": 43,
+                    "height": 33
+                },
+                "fills": [
+                    {
+                        "type": "SOLID",
+                        "color": {
+                            "r": 0.9450980392156862,
+                            "g": 0.3843137254901961,
+                            "b": 0.5764705882352941,
+                            "a": 1
+                        }
+                    }
+                ],
+                "strokes": [],
+                "strokeWeight": 1,
+                "strokeAlign": "INSIDE",
+                "effects": []
+            },
+            {
+                "type": "RECTANGLE",
+                "name": "Image",
+                "blendMode": "PASS_THROUGH",
+                "absoluteBoundingBox": {
+                    "x": 47,
+                    "y": 13,
+                    "width": 79,
+                    "height": 22
+                },
+                "fills": [
+                    {
+                        "type": "SOLID",
+                        "color": {
+                            "r": 0.9450980392156862,
+                            "g": 0.3843137254901961,
+                            "b": 0.5764705882352941,
+                            "a": 1
+                        }
+                    }
+                ],
+                "strokes": [],
+                "strokeWeight": 1,
+                "strokeAlign": "INSIDE",
+                "effects": []
+            },
+            {
+                "type": "RECTANGLE",
+                "name": "Image",
+                "blendMode": "PASS_THROUGH",
+                "absoluteBoundingBox": {
+                    "x": 12,
+                    "y": 4,
+                    "width": 114,
+                    "height": 75
+                },
+                "fills": [
+                    {
+                        "type": "SOLID",
+                        "color": {
+                            "r": 0.9450980392156862,
+                            "g": 0.3843137254901961,
+                            "b": 0.5764705882352941,
+                            "a": 1
+                        }
+                    }
+                ],
+                "strokes": [],
+                "strokeWeight": 1,
+                "strokeAlign": "INSIDE",
+                "effects": []
+            },
+            {
+                "type": "RECTANGLE",
+                "name": "Pager_Indicator",
+                "blendMode": "PASS_THROUGH",
+                "absoluteBoundingBox": {
+                    "x": 25,
+                    "y": 113,
+                    "width": 101,
+                    "height": 115
+                },
+                "fills": [
+                    {
+                        "type": "SOLID",
+                        "color": {
+                            "r": 1.0,
+                            "g": 1.0,
+                            "b": 1.0,
+                            "a": 1
+                        }
+                    }
+                ],
+                "strokes": [],
+                "strokeWeight": 1,
+                "strokeAlign": "INSIDE",
+                "effects": []
+            },
+            {
+                "type": "RECTANGLE",
+                "name": "Text",
+                "blendMode": "PASS_THROUGH",
+                "absoluteBoundingBox": {
+                    "x": 0,
+                    "y": 74,
+                    "width": 127,
+                    "height": 78
+                },
+                "fills": [
+                    {
+                        "type": "SOLID",
+                        "color": {
+                            "r": 0.2901960784313726,
+                            "g": 0.0784313725490196,
+                            "b": 0.5529411764705883,
+                            "a": 1
+                        }
+                    }
+                ],
+                "strokes": [],
+                "strokeWeight": 1,
+                "strokeAlign": "INSIDE",
+                "effects": []
+            },
+            {
+                "type": "RECTANGLE",
+                "name": "Text",
+                "blendMode": "PASS_THROUGH",
+                "absoluteBoundingBox": {
+                    "x": 0,
+                    "y": 79,
+                    "width": 127,
+                    "height": 87
+                },
+                "fills": [
+                    {
+                        "type": "SOLID",
+                        "color": {
+                            "r": 0.2901960784313726,
+                            "g": 0.0784313725490196,
+                            "b": 0.5529411764705883,
+                            "a": 1
+                        }
+                    }
+                ],
+                "strokes": [],
+                "strokeWeight": 1,
+                "strokeAlign": "INSIDE",
+                "effects": []
+            },
+            {
+                "type": "RECTANGLE",
+                "name": "Text_Button",
+                "blendMode": "PASS_THROUGH",
+                "absoluteBoundingBox": {
+                    "x": 0,
+                    "y": 110,
+                    "width": 25,
+                    "height": 118
+                },
+                "fills": [
+                    {
+                        "type": "SOLID",
+                        "color": {
+                            "r": 1.0,
+                            "g": 1.0,
+                            "b": 1.0,
+                            "a": 1
+                        }
+                    }
+                ],
+                "strokes": [],
+                "strokeWeight": 1,
+                "strokeAlign": "INSIDE",
+                "effects": []
+            },
+            {
+                "type": "RECTANGLE",
+                "name": "Text_Button",
+                "blendMode": "PASS_THROUGH",
+                "absoluteBoundingBox": {
+                    "x": 102,
+                    "y": 110,
+                    "width": 127,
+                    "height": 118
+                },
+                "fills": [
+                    {
+                        "type": "SOLID",
+                        "color": {
+                            "r": 1.0,
+                            "g": 1.0,
+                            "b": 1.0,
+                            "a": 1
+                        }
+                    }
+                ],
+                "strokes": [],
+                "strokeWeight": 1,
+                "strokeAlign": "INSIDE",
+                "effects": []
+            }
+        ]
+    },
+    "components": {},
+    "schemaVersion": 0,
+    "styles": {}
+}

@@ -13,10 +13,13 @@ def load_legends():
 def convert_ui_json_to_figma(ui_json, component_legend, icon_legend, textbutton_legend):
     figma_nodes = []
 
-    for component in ui_json[0].split(" | "):
-        if component.startswith("START") or component.startswith("END"):
-            continue
+    # Extracting components from the input string, including those after START and before END
+    raw_components = ui_json[0]
+    # Remove the 'START ' prefix and ' END...' suffix
+    raw_components = raw_components.replace("START ", "", 1).rsplit(" END", 1)[0]
+    components = raw_components.split(" | ")
 
+    for component in components:
         parts = component.split(" ")
         component_type, x, y, width, height = parts[0], int(parts[1]), int(parts[2]), int(parts[3]), int(parts[4])
 
@@ -65,6 +68,7 @@ def convert_ui_json_to_figma(ui_json, component_legend, icon_legend, textbutton_
     }
 
 
+
 def read_ui_json_from_file(file_path):
     with open(file_path, 'r') as file:
         ui_json = json.load(file)
@@ -77,8 +81,8 @@ def write_figma_json_to_file(figma_json, output_path):
         
         
 def main():
-    input_file_path = 'test_uijson.json'
-    output_file_path = './figmajson_output/converted_figma_json.json'
+    input_file_path = './test1/rico_pretrained.ema_0.9999_175000.pt.samples_-1.0_elem1.json'
+    output_file_path = './figmajson_output/test1_converted_figma_json.json'
 
     component_legend, icon_legend, textbutton_legend = load_legends()
 
